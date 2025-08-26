@@ -1,0 +1,94 @@
+@theme {
+  /* --- Primary Colors (Amatista) --- */
+  --color-amatista-50: #ede6f4;
+  --color-amatista-100: #dccce9;
+  --color-amatista-200: #b899d2;
+  --color-amatista-300: #9567bc;
+  --color-amatista-400: #7134a5;
+  --color-amatista-500: #4e018f;
+  --color-amatista-600: #3e0172;
+  --color-amatista-700: #2f0156;
+  --color-amatista-800: #1f0039;
+  --color-amatista-900: #10001d;
+  --color-amatista-950: #08000e;
+
+  /* --- Primary Colors 2 (Solar) --- */
+  --color-solar-50: #fffbe6;
+  --color-solar-100: #fff7cc;
+  --color-solar-200: #ffef99;
+  --color-solar-300: #ffe766;
+  --color-solar-400: #ffdf33;
+  --color-solar-500: #ffd700;
+  --color-solar-600: #ccac00;
+  --color-solar-700: #998100;
+  --color-solar-800: #665600;
+  --color-solar-900: #332b00;
+  --color-solar-950: #191500;
+
+  /* --- Secondary Colors (Menta) --- */
+  --color-menta-50: #f5fff5;
+  --color-menta-100: #eaffea;
+  --color-menta-200: #d6ffd6;
+  --color-menta-300: #c1ffc1;
+  --color-menta-400: #adffad;
+  --color-menta-500: #98ff98;
+  --color-menta-600: #7acc7a;
+  --color-menta-700: #5b995b;
+  --color-menta-800: #3d663d;
+  --color-menta-900: #1e331e;
+  --color-menta-950: #0f190f;
+
+  /* --- Secondary Colors 2 (Cookie) --- */
+  --color-cookie-50: #fffffa;
+  --color-cookie-100: #fffef5;
+  --color-cookie-200: #fffdeb;
+  --color-cookie-300: #fffce1;
+  --color-cookie-400: #fffbd7;
+  --color-cookie-500: #fffacd;
+  --color-cookie-600: #ccc8a4;
+  --color-cookie-700: #99967b;
+  --color-cookie-800: #666452;
+  --color-cookie-900: #333229;
+  --color-cookie-950: #191914;
+
+  /* --- Dark Colors --- */
+  --color-dark-50: #f8f8f8;
+  --color-dark-100: #f4f4f4;
+  --color-dark-200: #eeeeee;
+  --color-dark-300: #e1e1e1;
+  --color-dark-400: #c7c7c7;
+  --color-dark-500: #7d7d7d;
+  --color-dark-600: #2d2d2d;
+  --color-dark-700: #212121;
+  --color-dark-800: #171717;
+  --color-dark-900: #111111;
+  --color-dark-950: #070707;
+
+  /* --- Black Colors --- */
+  --color-black-4: #0000000a;
+  --color-black-7: #00000012;
+  --color-black-12: #0000001f;
+  --color-black-16: #00000029;
+  --color-black-24: #0000003d;
+  --color-black-32: #00000052;
+  --color-black-48: #0000007a;
+  --color-black-56: #0000008f;
+  --color-black-64: #000000a3;
+  --color-black-72: #000000b8;
+  --color-black-88: #000000e0;
+  --color-black-100: #000000;
+
+  /* --- White Colors --- */
+  --color-white-4: #ffffff0a;
+  --color-white-7: #ffffff12;
+  --color-white-12: #ffffff1f;
+  --color-white-16: #ffffff29;
+  --color-white-24: #ffffff3d;
+  --color-white-32: #ffffff52;
+  --color-white-48: #ffffff7a;
+  --color-white-56: #ffffff8f;
+  --color-white-64: #ffffa3;
+  --color-white-72: #ffffffb8;
+  --color-white-88: #ffffffe0;
+  --color-white-100: #ffffff;
+}

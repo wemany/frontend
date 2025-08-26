@@ -1,0 +1,53 @@
+@theme {
+  /* --- Functional Colors: Info --- */
+  --color-info-50: #f1f8fe;
+  --color-info-100: #deeffd;
+  --color-info-200: #bcdffa;
+  --color-info-300: #92cbf7;
+  --color-info-400: #59b0f3;
+  --color-info-500: #118be8;
+  --color-info-600: #1080d6;
+  --color-info-700: #0e6fb9;
+  --color-info-800: #0b5b98;
+  --color-info-900: #08416d;
+  --color-info-950: #001d38;
+
+  /* --- Functional Colors: success --- */
+  --color-success-50: #e8fbe5;
+  --color-success-100: #d4f7cf;
+  --color-success-200: #a9ef9f;
+  --color-success-300: #7fe76f;
+  --color-success-400: #50df3a;
+  --color-success-500: #35c220;
+  --color-success-600: #249919;
+  --color-success-700: #217613;
+  --color-success-800: #164f0d;
+  --color-success-900: #0d3107;
+  --color-success-950: #082005;
+
+  /* --- Functional Colors: danger --- */
+  --color-danger-50: #feecec;
+  --color-danger-100: #fcd9d9;
+  --color-danger-200: #f9b3b3;
+  --color-danger-300: #f68989;
+  --color-danger-400: #f36363;
+  --color-danger-500: #f03d3d;
+  --color-danger-600: #e92020;
+  --color-danger-700: #a60d0d;
+  --color-danger-800: #720909;
+  --color-danger-900: #4a0606;
+  --color-danger-950: #240000;
+
+  /* --- Functional Colors: warnig --- */
+  --color-warnig-50: #fff8e6;
+  --color-warnig-100: #f3f2cd;
+  --color-warnig-200: #fee56a;
+  --color-warnig-300: #fdd868;
+  --color-warnig-400: #fdcb35;
+  --color-warnig-500: #fcbf04;
+  --color-warnig-600: #ca9802;
+  --color-warnig-700: #977202;
+  --color-warnig-800: #654c01;
+  --color-warnig-900: #4a3902;
+  --color-warnig-950: #2d2000;
+}
