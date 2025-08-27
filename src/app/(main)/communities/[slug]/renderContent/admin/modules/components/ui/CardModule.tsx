@@ -3,14 +3,12 @@ import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
 import { Module } from "../../types/module.type";
 import Image from "next/image";
-import { Edit, GripVertical, MoreHorizontal, Trash2 } from "lucide-react";
+import { Edit, Eye, EyeClosed, GripVertical, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Role } from "../../../roles/types/role.type";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 interface CardModuleProps {
     slug: string;
@@ -19,11 +17,13 @@ interface CardModuleProps {
     isDragging?: boolean;
     onDelete: (module: Module) => void;
     onEdit: (module: Module) => void;
+    onPublish: (moduleId: string) => void;
 }
 
-const CardModule = ({ slug, module, roles, isDragging = false, onDelete, onEdit }: CardModuleProps) => {
+const CardModule = ({ slug, module, roles, isDragging = false, onDelete, onEdit, onPublish }: CardModuleProps) => {
     const requiredRoles = roles.filter(role => module.role_required_id.includes(role.role_id));
 
+    console.log({ module });
     const {
         attributes,
         listeners,
@@ -47,12 +47,12 @@ const CardModule = ({ slug, module, roles, isDragging = false, onDelete, onEdit 
             style={style}
             {...attributes}
             {...listeners}
-            className={`overflow-hidden rounded-2xl bg-gray-800 border border-gray-700 hover:bg-gray-700 transition-colors cursor-grab active:cursor-grabbing ${isDragging || isSortableDragging ? "shadow-lg scale-105" : "hover:shadow-md"}`}>
+            className={`overflow-hidden rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-2 border-gray-700/50 hover:border-purple-500/50 transition-colors cursor-grab active:cursor-grabbing ${isDragging || isSortableDragging ? "shadow-lg scale-105" : "hover:shadow-md"}`}>
 
-            <div className="p-6 flex items-start gap-4">
+            <div className="p-6 flex items-center gap-4">
                 <div
-                    className="p-2 cursor-grab active:cursor-grabbing text-gray-500 hover:text-white transition-colors">
-                    <GripVertical className="h-5 w-5" />
+                    className="p-2 cursor-grab active:cursor-grabbing text-white">
+                    <GripVertical className="h-10 w-10 " />
                 </div>
 
                 <div className="flex-1 min-w-0 flex items-start gap-4">
@@ -97,16 +97,49 @@ const CardModule = ({ slug, module, roles, isDragging = false, onDelete, onEdit 
                 {/* Botón para ver Módulo */}
                 <div className="flex flex-col justify-between items-end h-[100px] gap-2">
                     <div className="flex items-center gap-2">
-
+                        {/* 
                         <Badge className={cn(
                             "px-4 py-2 rounded-2xl",
                             module.is_active ? "bg-green-600/20 text-green-400 border-green-500/30" : "bg-red-600/20 text-red-400 border-red-500/30"
                         )}>
                             {module.is_active ? 'Activo' : 'Inactivo'}
-                        </Badge>
+                        </Badge> */}
 
                         <div onPointerDown={(e) => e.stopPropagation()}>
-                            <DropdownMenu>
+                            <div className="flex items-center gap-2">
+                                <Button
+                                    size="icon"
+                                    title="Editar Módulo"
+                                    onClick={() => onEdit(module)}
+                                    className="hover:cursor-pointer hover:text-purple-400 hover:bg-purple-700/10"
+                                >
+                                    <Edit className="h-4 w-4" />
+                                </Button>
+                                <Button
+                                    size="icon"
+                                    title="Emiminar Módulo"
+                                    onClick={() => {
+                                        onDelete(module)
+
+                                    }}
+                                    className="hover:cursor-pointer hover:text-red-400 hover:bg-red-700/10"
+                                >
+                                    <Trash2 className="h-4 w-4" />
+
+                                </Button>
+                                <Button
+                                    size="icon"
+                                    title={module.is_active ? "Ocultar Módulo" : "Publicar Módulo"}
+                                    onClick={() => {
+                                        onPublish(module.id)
+
+                                    }}
+                                    className="hover:cursor-pointer hover:text-blue-400 hover:bg-blue-700/10"
+                                >
+                                    {module.is_active ? <EyeClosed className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                                </Button>
+                            </div>
+                            {/* <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
                                     <Button variant="ghost" size="icon" className="text-slate-400 hover:text-white">
                                         <MoreHorizontal className="h-4 w-4" />
@@ -130,8 +163,18 @@ const CardModule = ({ slug, module, roles, isDragging = false, onDelete, onEdit 
                                         <Trash2 className="mr-2 h-4 w-4" />
                                         Eliminar Módulo
                                     </DropdownMenuItem>
+                                    <DropdownMenuItem
+                                        onClick={() => {
+                                            onPublish(module)
+
+                                        }}
+                                        className="hover:cursor-pointer hover:text-red-300 hover:bg-red-500/10"
+                                    >
+                                        {module.is_active ? <EyeClosed className="mr-2 h-4 w-4" /> : <Eye className="mr-2 h-4 w-4" />}
+                                        {module.is_active ? 'Ocultar Módulo' : 'Publicar Módulo'}
+                                    </DropdownMenuItem>
                                 </DropdownMenuContent>
-                            </DropdownMenu>
+                            </DropdownMenu> */}
                         </div>
                     </div>
                     <div onPointerDown={(e) => e.stopPropagation()}>

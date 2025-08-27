@@ -72,13 +72,13 @@ const DeleteRoleModal = ({ showDeleteRoleModal, setShowDeleteRoleModal, roleToDe
                                 <Button
                                     onClick={() => { setShowDeleteRoleModal(false); setRoleToDelete(null) }}
                                     variant="outline"
-                                    className="bg-gray-800/50 hover:bg-gray-700/50 text-white border-gray-700 rounded-2xl flex-1"
+                                    className="bg-gray-800/50 hover:bg-gray-700/50 text-white border-gray-700 rounded-2xl flex-1 cursor-pointer"
                                 >
                                     Cancelar
                                 </Button>
                                 <Button
                                     onClick={onConfirmDelete}
-                                    className="bg-red-600 hover:bg-red-700 text-white rounded-2xl flex-1"
+                                    className="bg-red-600 hover:bg-red-700 text-white rounded-2xl flex-1 cursor-pointer"
                                 >
                                     Eliminar Rol
                                 </Button>

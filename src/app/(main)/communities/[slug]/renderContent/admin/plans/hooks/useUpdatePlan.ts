@@ -5,22 +5,24 @@ import { CreatePlanForm } from "../lib/schema/plan.schema";
 import { updatePlan } from "../lib/api";
 import { TransformedData } from "@/app/(main)/profile/types/api.types";
 
-// TODO: Crear nueva funcionalidad y manejo de errores cuando se crea el plan
 export const useUpdatePlan = (
   communityId: string,
   communityData: TransformedData | null,
   fetchCommunityData: () => Promise<void>
 ) => {
   const [openModal, setOpenModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [planToEdit, setPlanToEdit] = useState<Plan | null>(null);
   const { mutate } = useSWRConfig();
 
   const planKey = `/api/plan/getPlans/${communityId}`;
 
   const handleEditClick = async (plan: Plan) => {
+    setIsLoading(true);
     await fetchCommunityData();
     setPlanToEdit(plan);
     setOpenModal(true);
+    setIsLoading(false);
   };
 
   const handleSubmitUpdate = async (
@@ -42,6 +44,7 @@ export const useUpdatePlan = (
   return {
     openModal,
     planToEdit,
+    isLoading,
     setOpenModal,
     handleEditClick,
     handleSubmitUpdate,

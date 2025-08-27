@@ -11,26 +11,27 @@ import { Button } from "@/components/ui/button";
 interface PlanRolesFieldProps {
     control: PlanFieldProps['control'];
     roles: Role[];
+    selectedRoles: string[] | undefined;
 }
 
-const PlanRolesField = ({ control, roles }: PlanRolesFieldProps) => {
+const PlanRolesField = ({ control, roles, selectedRoles }: PlanRolesFieldProps) => {
     return (
         <FormField
             control={control}
             name="role"
             render={({ field, fieldState }) => {
-                const selectedRoles = field.value || [];
+                const rolesToDisplay = selectedRoles || [];
                 const maxRoles = ROLES_LENGTH.MAX;
-                const canAddRoles = selectedRoles.length < maxRoles;
+                const canAddRoles = rolesToDisplay.length < maxRoles;
 
                 const addRole = (roleId: string) => {
-                    if (canAddRoles && !selectedRoles.includes(roleId)) {
-                        field.onChange([...selectedRoles, roleId]);
+                    if (canAddRoles && !rolesToDisplay.includes(roleId)) {
+                        field.onChange([...rolesToDisplay, roleId]);
                     }
                 };
 
                 const removeRole = (roleId: string) => {
-                    field.onChange(selectedRoles.filter((id: string) => id !== roleId));
+                    field.onChange(rolesToDisplay.filter((id: string) => id !== roleId));
                 };
 
                 const getRole = (roleId: string) => {
@@ -50,7 +51,7 @@ const PlanRolesField = ({ control, roles }: PlanRolesFieldProps) => {
                                 <div className="flex flex-wrap gap-2">
                                     {roles.map((role) => {
                                         const SelectedIcon = role.icon && ROLE_ICONS.find(item => item.value === role.icon)?.icon;
-                                        const isSelected = selectedRoles.includes(role.role_id);
+                                        const isSelected = rolesToDisplay.includes(role.role_id);
                                         const isDisabled = !canAddRoles && !isSelected;
 
                                         return (
@@ -76,11 +77,11 @@ const PlanRolesField = ({ control, roles }: PlanRolesFieldProps) => {
                                 </div>
                             </div>
 
-                            {selectedRoles.length > 0 && (
+                            {rolesToDisplay.length > 0 && (
                                 <div>
                                     <p className="text-slate-400 text-sm mb-2">Roles Seleccionados:</p>
                                     <div className="flex flex-wrap gap-2">
-                                        {selectedRoles.map((roleId) => {
+                                        {rolesToDisplay.map((roleId) => {
                                             const role = getRole(roleId);
                                             const SelectedIcon = role?.icon && ROLE_ICONS.find(item => item.value === role.icon)?.icon;
                                             return (

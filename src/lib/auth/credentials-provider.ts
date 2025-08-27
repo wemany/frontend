@@ -25,6 +25,7 @@ export const credentialsProvider = {
       );
 
       const result = await response.json();
+      console.log({ result });
       if (!response.ok) {
         throw new Error(result.message || "Authentication failed.");
       }

@@ -37,12 +37,13 @@ const CommunityCard = ({ community, variant = "default" }: CommunityCardProps) =
 
         try {
             const result = await joinCommunity(community.id, selectedPlan.id);
+            console.log({ result });
             if (result) {
                 router.push(`/communities/${community.alias}`);
                 addCommunity({
                     id: result.subscription.id,
                     alias: result.subscription.alias,
-                    name: result.subscription.name,
+                    name: result.subscription.community_name,
                 });
             }
         } catch (error) {

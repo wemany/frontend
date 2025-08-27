@@ -26,7 +26,7 @@ const InfoRolesManager = () => {
                         <button
                             key={platform.id}
                             onClick={() => setSelectedApiPlatform(platform.id)}
-                            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${selectedApiPlatform === platform.id
+                            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer duration-200 ${selectedApiPlatform === platform.id
                                 ? `${platform.color} text-white shadow-lg`
                                 : `bg-gray-800/50 text-slate-300 ${platform.hoverColor} hover:text-white border border-gray-700/50`
                                 }`}
@@ -91,7 +91,7 @@ const InfoRolesManager = () => {
                             </div>
                             <button
                                 onClick={() => setShowAllMilestonesModal(false)}
-                                className="w-8 h-8 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+                                className="w-8 h-8 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 flex items-center justify-center text-gray-400 hover:text-white transition-colors cursor-pointer"
                             >
                                 <X className="h-4 w-4" />
                             </button>

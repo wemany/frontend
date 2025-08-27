@@ -30,7 +30,7 @@ const planTypeOptions: Omit<BaseOptionProps<boolean>, "isSelected" | "onSelect">
 ];
 const DialogForm = ({ form, isEditing, role, data, isFormValid, onSubmit }: ModalFormProps) => {
     const { watch, formState } = form;
-    const { price, is_recurring, benefits, duration_unit, duration_value } = watch();
+    const { price, is_recurring, benefits, duration_unit, duration_value, role: selectedRoles } = watch();
 
     const plan = { duration_unit, duration_value };
 
@@ -90,7 +90,7 @@ const DialogForm = ({ form, isEditing, role, data, isFormValid, onSubmit }: Moda
                     name="color"
                     label="Color del Plan"
                 />
-                <PlanRolesField control={form.control} roles={role} />
+                <PlanRolesField control={form.control} roles={role} selectedRoles={selectedRoles} />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <PlanPriceField control={form.control} handlePlanUpdate={handlePlanUpdate} />
                     <PlanSelectCurrencyField control={form.control} data={data.currencies} isFreePlan={isFreePlan} />

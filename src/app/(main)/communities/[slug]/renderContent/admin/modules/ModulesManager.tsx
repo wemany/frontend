@@ -17,6 +17,7 @@ import { CreateModuleForm } from "./lib/schema/module.schema";
 import SkeletonLoaderModules from "./components/ui/SkeletonLoaderModules";
 import { useActionsOverlay } from "@/hooks/useModuleOverlay";
 import { operationProps } from "./lib/moduleOperationsConfig";
+import { usePublishModule } from "./hooks/usePublishModule";
 
 const ModulesManager = ({ communityId, slug }: { communityId: string, slug: string }) => {
 
@@ -25,6 +26,8 @@ const ModulesManager = ({ communityId, slug }: { communityId: string, slug: stri
     const { openModal, setOpenModal, handleSubmitModule } = useCreateModule(communityId);
     const { openModal: openEditModal, setOpenModal: setOpenEditModal, moduleToEdit, handleEditClick, handleSubmitUpdate: originalUpdateSubmit } = useUpdateModule(communityId);
     const { isDialogDeleteOpen, moduleToDelete, setIsDialogDeleteOpen, handleDeleteClick, handleConfirmDelete: originalDeleteConfirm, setModuleToDelete } = useDeleteModule(communityId);
+    const { handlePublishModule } = usePublishModule();
+
 
     const {
         isOverlayOpen,
@@ -85,6 +88,7 @@ const ModulesManager = ({ communityId, slug }: { communityId: string, slug: stri
                     onDeleteModule={handleDeleteClick}
                     onEditModule={handleEditClick}
                     onReorderModules={onReorderModules}
+                    onPublishModule={handlePublishModule}
                 />}
 
             {openModal && <CreateModuleModal open={openModal} roles={roles} onOpenChange={setOpenModal} onSubmit={handleCreateModule} />}

@@ -1,6 +1,7 @@
 interface PricingPlan {
   id: string;
   name: string;
+  color: string;
   benefits: string[] | null;
   description: string;
   currency: string;

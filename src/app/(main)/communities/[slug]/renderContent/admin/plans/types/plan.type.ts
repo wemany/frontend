@@ -18,7 +18,7 @@ export interface Plan {
       color: string;
     }
   ];
-  duration_unit: "day" | "week" | "month" | "year";
+  duration_unit: "days" | "weeks" | "months" | "years";
   duration_value: number;
   is_recurring: boolean;
   color: string;

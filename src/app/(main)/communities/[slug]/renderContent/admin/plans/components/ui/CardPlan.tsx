@@ -9,12 +9,13 @@ import { cn } from "@/lib/utils";
 
 interface CardPlanProps {
     plan: Plan;
+    isLoading: boolean;
     onEdit: (plan: Plan) => void;
     onDelete: (plan: Plan) => void;
 }
 
 
-const CardPlan = ({ plan, onEdit, onDelete }: CardPlanProps) => {
+const CardPlan = ({ plan, isLoading, onEdit, onDelete }: CardPlanProps) => {
     console.log({ plan });
     return (
         <motion.div
@@ -36,8 +37,8 @@ const CardPlan = ({ plan, onEdit, onDelete }: CardPlanProps) => {
                     <CardAction>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" size="icon" className="text-slate-400 hover:text-white">
-                                    <MoreHorizontal className="h-6 w-6" />
+                                <Button variant="ghost" size="icon" className="text-white">
+                                    <MoreHorizontal className="h-8 w-8" />
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="bg-gray-800" align="end">
@@ -58,10 +59,11 @@ const CardPlan = ({ plan, onEdit, onDelete }: CardPlanProps) => {
                     {/* Price */}
                     <div className="text-center mb-6">
                         <div className="flex items-baseline justify-center gap-1">
-                            <span className="text-3xl font-bold text-white">${plan.price}</span>
-                            {plan.is_recurring && (
+                            <span className="text-3xl font-bold text-white">{plan.price == 0 ? "Gratis" : `$${plan.price}`}</span>
+                            <span className="text-slate-400 text-sm"></span>
+                            {plan.price != 0 && (
                                 <span className="text-slate-400 text-sm">
-                                    {plan.currency_code}/{plan.duration_unit === "month" ? "mes" : plan.duration_unit === "year" ? "año" : ""}
+                                    {plan.currency_code}/{plan.duration_unit === "months" ? "mes" : plan.duration_unit === "years" ? "año" : ""}
                                 </span>
                             )}
                         </div>
@@ -108,7 +110,10 @@ const CardPlan = ({ plan, onEdit, onDelete }: CardPlanProps) => {
                     <div className="flex gap-2 w-full">
                         <Button
                             onClick={() => onEdit(plan)}
-                            className={`flex-1 bg-${plan.color}-600 hover:bg-${plan.color}-700 text-white rounded-2xl`}
+                            className={cn(
+                                `flex-1 rounded-2xl`,
+                                isLoading ? "bg-gray-400 text-gray-700 cursor-not-allowed" : `bg-${plan.color}-600 hover:bg-${plan.color}-700 text-white`
+                            )} disabled={isLoading}
                         >
                             <Edit className="mr-2 h-4 w-4" />
                             Editar

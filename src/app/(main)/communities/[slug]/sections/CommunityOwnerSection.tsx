@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { motion } from "framer-motion";
-import { Users, Trophy, Target, Flame, Zap, Globe, Edit3 } from "lucide-react";
+import { Users, Trophy, Target, Flame, Zap, Edit3, EyeClosed, Eye } from "lucide-react";
 import UserStatCard from "../../components/ui/UserStatCard";
 import { useSession } from "next-auth/react";
 import { Community } from "../types/community";
@@ -107,12 +107,12 @@ const CommunityOwnerSection = ({ community, slug }: { community: Community, slug
                                     <>
                                         {community.publish ? (
                                             <>
-                                                <Zap className="h-4 w-4 mr-2" />
+                                                <EyeClosed className="h-4 w-4 mr-2" />
                                                 Ocultar Comunidad
                                             </>
                                         ) : (
                                             <>
-                                                <Globe className="h-4 w-4 mr-2" />
+                                                <Eye className="h-4 w-4 mr-2" />
                                                 Publicar Comunidad
                                             </>
                                         )}

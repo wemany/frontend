@@ -9,7 +9,7 @@ import { useUserCommunities } from "@/context/UserCommunitiesContext";
 const CommunitiesByUserSection = () => {
     const router = useRouter();
     const { userCommunities } = useUserCommunities();
-
+    console.log({ userCommunities, name: userCommunities[0]?.name });
     return (
         <SidebarGroup>
             <SidebarGroupLabel className="text-sm font-medium text-slate-400">

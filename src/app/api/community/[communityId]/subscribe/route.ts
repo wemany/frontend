@@ -30,6 +30,7 @@ export async function POST(
       }),
     });
     const data = await response.json();
+    console.log({ data });
     return NextResponse.json(data);
   } catch (error: unknown) {
     if (error instanceof Error) {

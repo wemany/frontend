@@ -28,6 +28,8 @@ const PricingModal = ({
         onPlanSelect?.(price);
     };
 
+    const sortedPlans = [...plans].sort((a, b) => a.price - b.price);
+
     return (
         <AnimatePresence>
             {isOpen && (
@@ -86,10 +88,10 @@ const PricingModal = ({
                         {/* Seccion de planes de precios */}
                         <div className={cn(
                             "flex pb-6",
-                            plans.length === 1 && "justify-center",
-                            plans.length > 1 && "flex-row gap-6"
+                            sortedPlans.length === 1 && "justify-center",
+                            sortedPlans.length > 1 && "flex-row gap-6"
                         )}>
-                            {plans.map((plan, index) => (
+                            {sortedPlans.map((plan, index) => (
                                 <motion.div
                                     key={plan.id}
                                     initial={{ opacity: 0, y: 20 }}
@@ -97,10 +99,8 @@ const PricingModal = ({
                                     transition={{ delay: index * 0.1 }}
                                     className={cn(
                                         "relative flex flex-col rounded-xl p-6 border-2 transition-all duration-300 hover:scale-[1.02]",
-                                        plans.length === 1 ? "w-full sm:w-1/2 md:w-1/3" : "w-full",
-                                        !plan.is_recurring && "bg-green-600/30 border-green-500/30",
-                                        plan.price > 0 && "bg-yellow-600/30 border-yellow-500/30",
-                                        plan.is_recurring && "bg-purple-600/30 border-purple-500/30"
+                                        sortedPlans.length === 1 ? "w-full sm:w-1/2 md:w-1/3" : "w-full",
+                                        `bg-${plan.color}-600/30 border-${plan.color}-500/30`
                                     )}
                                 >
                                     {plan.is_recurring && (
@@ -114,17 +114,22 @@ const PricingModal = ({
                                         <h3 className="text-xl font-bold text-white mb-2">{plan.name}</h3>
                                         <div className="mb-2">
                                             <span
-                                                className={cn(
-                                                    "text-4xl font-bold",
-                                                    !plan.is_recurring && "text-green-400",
-                                                    plan.price > 0 && "text-yellow-400",
-                                                    plan.is_recurring && "text-purple-400",
-                                                )}
+                                                className={`text-4xl font-bold text-${plan.color}-400`}
                                             >
-                                                ${formatNumber(plan.price)}
+                                                {plan.price == 0 ? 'Gratis' : `$${plan.price}`}
                                             </span>
-                                            {plan.currency && <span className="text-gray-400 text-sm ml-1">{plan.currency}</span>}
+                                            {plan.price != 0 && plan.currency && <span className="text-gray-400 text-md ml-1">{plan.currency}</span>}
+                                            {plan.price != 0 && (
+                                                <>
+                                                    {plan.is_recurring ? <span className="text-gray-400 text-xs">/Mes</span> : ''}
+                                                </>
+                                            )}
                                         </div>
+                                        {plan.price != 0 && (
+                                            <div className="mb-2">
+                                                {plan.is_recurring ? <span className="text-white">Por Mes</span> : <span className="text-white">Pago Único</span>}
+                                            </div>
+                                        )}
                                         <p className="text-gray-400 text-sm">{plan.description}</p>
                                     </div>
 
@@ -135,12 +140,7 @@ const PricingModal = ({
                                                 <Check
                                                     height={20}
                                                     width={20}
-                                                    className={cn(
-                                                        "flex-shrink-0",
-                                                        !plan.is_recurring && "text-green-400",
-                                                        plan.price > 0 && "text-yellow-400",
-                                                        plan.is_recurring && "text-purple-400",
-                                                    )}
+                                                    className={`flex-shrink-0 text-${plan.color}-400`}
                                                 />
                                                 <span className="text-gray-300 text-sm">{benefit}</span>
                                             </li>
@@ -149,16 +149,11 @@ const PricingModal = ({
 
                                     {/* Botón de acción */}
                                     <Button
-                                        className={cn(
-                                            "mt-auto w-full font-semibold transition-all duration-300",
-                                            !plan.is_recurring && "bg-green-600 hover:bg-green-700",
-                                            plan.price > 0 && "bg-yellow-600 hover:bg-yellow-700",
-                                            plan.is_recurring && "bg-purple-600 hover:bg-purple-700",
-                                        )}
+                                        className={`mt-auto w-full font-semibold transition-all duration-300 bg-${plan.color}-600 hover:bg-${plan.color}-700`}
                                         variant="default"
                                         onClick={() => handlePlanSelect(plan.price)}
                                     >
-                                        <span>{plan.name}</span>
+                                        <span>Seleccionar</span>
                                     </Button>
                                 </motion.div>
                             ))}

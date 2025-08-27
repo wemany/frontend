@@ -18,7 +18,7 @@ const ModuleVisibleField = ({ control }: ModuleFieldProps) => {
                         <Switch
                             checked={field.value}
                             onCheckedChange={field.onChange}
-                            className="h-8 w-14 p-0 data-[state=checked]:bg-purple-600 data-[state=unchecked]:bg-gray-600 [&>span]:h-7 [&>span]:w-7 [&>span]:bg-white data-[state=checked]:[&>span]:translate-x-[28px] "
+                            className="h-8 w-14 p-0 data-[state=checked]:bg-purple-600 data-[state=unchecked]:bg-gray-600 [&>span]:h-7 [&>span]:w-7 [&>span]:bg-white data-[state=checked]:[&>span]:translate-x-[28px] cursor-pointer"
                         />
                     </div>
                 </FormFieldWrapper>

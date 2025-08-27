@@ -8,11 +8,12 @@ import { useForm } from "react-hook-form";
 
 const CreatePlanModal = ({ open, data, roles, planToEdit, onOpenChange, onSubmit }: CreatePlanModalProps) => {
 
+    console.log({ planToEdit });
     const DEFAULT_VALUES: CreatePlanForm = useMemo(() => ({
         name: planToEdit?.name || "",
         description: planToEdit?.description || "",
         color: planToEdit?.color || "",
-        roles: planToEdit?.role_id ? (Array.isArray(planToEdit.role_id) ? planToEdit.role_id : [planToEdit.role_id]) : [],
+        role: planToEdit?.roles?.map(r => r.id) || [],
         price: planToEdit?.price || 0,
         currency: planToEdit?.currency_code || "USD",
         duration_unit: planToEdit?.duration_unit || DURATION_UNITS_VALUES[3],

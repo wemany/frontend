@@ -5,6 +5,7 @@ interface Plan {
   description: string;
   currency: string;
   price: number;
+  color: string;
   is_recurring: boolean;
 }
 

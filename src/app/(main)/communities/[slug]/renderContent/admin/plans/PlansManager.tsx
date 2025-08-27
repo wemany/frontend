@@ -14,6 +14,7 @@ import { useCreatePlan } from "./hooks/useCreatePlan";
 import { useCommunityData } from "@/app/(main)/profile/hooks/useCommunityData";
 import { useUpdatePlan } from "./hooks/useUpdatePlan";
 import { CreatePlanForm } from "./lib/schema/plan.schema";
+import SkeletonLoaderPlan from "./components/ui/SkeletonLoaderPlan";
 
 const PlansManager = ({ communityId }: { communityId: string }) => {
 
@@ -23,7 +24,7 @@ const PlansManager = ({ communityId }: { communityId: string }) => {
         fetchCommunityData } = useCommunityData();
 
     const { openModal, setOpenModal, handleSubmitPlan } = useCreatePlan(communityId, communityData);
-    const { openModal: openEditModal, planToEdit, setOpenModal: setOpenEditModal, handleEditClick, handleSubmitUpdate } = useUpdatePlan(communityId, communityData, fetchCommunityData);
+    const { openModal: openEditModal, isLoading: isLoadingEditModal, planToEdit, setOpenModal: setOpenEditModal, handleEditClick, handleSubmitUpdate } = useUpdatePlan(communityId, communityData, fetchCommunityData);
     const { handleDeleteClick, isDialogDeleteOpen, setIsDialogDeleteOpen, planToDelete, setPlanToDelete, handleConfirmDelete } = useDeletePlan(communityId);
 
     const handleOpenModal = async () => {
@@ -73,10 +74,10 @@ const PlansManager = ({ communityId }: { communityId: string }) => {
             </div>}
             {isLoading ?
                 <div className="mx-auto">
-                    <p className="text-blue-800">Cargando planes...</p>
+                    <SkeletonLoaderPlan />
                 </div> :
                 <div>
-                    <PlansListManager plans={plans} roles={roles || []} setOpenModal={setOpenModal} onEditPlan={handleEditClick} onDeletePlan={handleDeleteClick} />
+                    <PlansListManager plans={plans} isLoading={isLoadingEditModal} setOpenModal={setOpenModal} onEditPlan={handleEditClick} onDeletePlan={handleDeleteClick} />
                 </div>
             }
 

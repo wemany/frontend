@@ -23,9 +23,10 @@ interface ModulesListManagerProps {
     onEditModule: (module: Module) => void;
     onDeleteModule: (module: Module) => void;
     onReorderModules: (newOrder: string[]) => void;
+    onPublishModule: (moduleId: string) => void;
 }
 
-const ModulesListManager = ({ slug, modules, roles, setOpenModal, onDeleteModule, onEditModule, onReorderModules }: ModulesListManagerProps) => {
+const ModulesListManager = ({ slug, modules, roles, setOpenModal, onDeleteModule, onEditModule, onReorderModules, onPublishModule }: ModulesListManagerProps) => {
 
     const [localModules, setLocalModules] = useState<Module[]>(modules);
 
@@ -75,7 +76,7 @@ const ModulesListManager = ({ slug, modules, roles, setOpenModal, onDeleteModule
                     >
                         <div className="space-y-4">
                             {localModules.map((module) => (
-                                <CardModule key={module.id} slug={slug} module={module} roles={roles} onDelete={onDeleteModule} onEdit={onEditModule} />
+                                <CardModule key={module.id} slug={slug} module={module} roles={roles} onDelete={onDeleteModule} onEdit={onEditModule} onPublish={onPublishModule} />
                             ))}
                         </div>
                     </SortableContext>

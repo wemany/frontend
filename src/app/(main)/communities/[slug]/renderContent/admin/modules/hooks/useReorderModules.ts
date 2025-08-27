@@ -1,14 +1,12 @@
-// ... otros imports
 import { fetcher } from "@/lib/fetcher";
 import useSWRMutation from "swr/mutation";
 import useSWR, { useSWRConfig } from "swr";
 import { ApiResponseModule, Module } from "../types/module.type";
 
 interface ReorderModulesPayload {
-  newOrder: { id: string; index: number }[]; // El payload ahora es un arreglo de objetos
+  newOrder: { id: string; index: number }[];
 }
 
-// El `fetcher` para la mutación ahora recibe el nuevo formato
 const reorderFetcher = async (
   url: string,
   { arg }: { arg: ReorderModulesPayload }
@@ -18,7 +16,7 @@ const reorderFetcher = async (
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(arg.newOrder), // Envía el arreglo directamente
+    body: JSON.stringify(arg.newOrder),
   });
 
   const result = await response.json();

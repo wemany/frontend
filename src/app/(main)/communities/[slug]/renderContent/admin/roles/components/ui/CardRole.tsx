@@ -16,7 +16,6 @@ interface CardRoleProps {
 
 const CardRole = ({ role, onEdit, onDelete }: CardRoleProps) => {
     const SelectedIcon = role.icon && ROLE_ICONS.find(item => item.value === role.icon)?.icon;
-    console.log({ role });
     return (
         <div className="grid gap-6">
             <motion.div
@@ -58,8 +57,8 @@ const CardRole = ({ role, onEdit, onDelete }: CardRoleProps) => {
                         {
                             role.role_name !== 'Miembro' && <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
-                                    <Button variant="ghost" size="icon" className="text-slate-400 hover:text-white">
-                                        <MoreHorizontal className="h-4 w-4" />
+                                    <Button variant="ghost" size="icon" className="text-white">
+                                        <MoreHorizontal className="h-8 w-8" />
                                     </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end">
@@ -68,10 +67,10 @@ const CardRole = ({ role, onEdit, onDelete }: CardRoleProps) => {
                                             onDelete(role)
 
                                         }}
-                                        className="text-red-400 hover:text-red-300 hover:bg-red-500/10"
+                                        className="text-red-400 hover:text-red-300 hover:bg-red-500/10 cursor-pointer"
                                     >
                                         <Trash2 className="mr-2 h-4 w-4" />
-                                        Elimnar Rol
+                                        Eliminar Rol
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>

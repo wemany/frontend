@@ -1,17 +1,16 @@
 import CreateNew from "@/components/CreateNew";
 import { Plan } from "../types/plan.type";
 import CardPlan from "../components/ui/CardPlan";
-import { Role } from "../../roles/types/role.type";
 
 interface PlansListManagerProps {
     plans: Plan[],
-    roles: Role[],
+    isLoading: boolean;
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
     onEditPlan: (plan: Plan) => void;
     onDeletePlan: (plan: Plan) => void;
 }
 
-const PlansListManager = ({ plans, setOpenModal, onEditPlan, onDeletePlan }: PlansListManagerProps) => {
+const PlansListManager = ({ plans, isLoading, setOpenModal, onEditPlan, onDeletePlan }: PlansListManagerProps) => {
     let containerClasses = "";
     switch (plans.length) {
         case 1:
@@ -32,7 +31,7 @@ const PlansListManager = ({ plans, setOpenModal, onEditPlan, onDeletePlan }: Pla
             {plans.length === 0 ? <CreateNew handleCreate={() => setOpenModal(true)} title="Crear Nuevo Plan" description="Crea un nuevo plan para tu comunidad" /> :
                 <div className={containerClasses}>
                     {plans.map(plan => (
-                        <CardPlan key={plan.id} plan={plan} onEdit={onEditPlan} onDelete={onDeletePlan} />
+                        <CardPlan key={plan.id} plan={plan} isLoading={isLoading} onEdit={onEditPlan} onDelete={onDeletePlan} />
                     ))}
                 </div>}
         </>

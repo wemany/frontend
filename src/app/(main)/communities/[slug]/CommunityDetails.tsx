@@ -19,6 +19,8 @@ const CommunityDetailsPage = () => {
     const community = data?.community;
     const isOwner = community?.ownerId === session?.user.id;
 
+    console.log({ community });
+
     useEffect(() => {
         if (community && session?.user?.id) {
             if (isOwner) {
